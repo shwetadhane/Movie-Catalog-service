@@ -1,5 +1,4 @@
 FROM openjdk:11
-EXPOSE 9095
-ADD target/movie-catalog-service.jar movie-catalog-service.jar
-
-ENTRYPOINT ["java","-jar","/movie-catalog-service.jar"]
+EXPOSE 8080
+ADD target/Movie-Catalog-service-0.0.1-SNAPSHOT.jar Movie-Catalog-service-0.0.1-SNAPSHOT.jar
+ENTRYPOINT ["java","-jar","/Movie-Catalog-service-0.0.1-SNAPSHOT.jar"]
