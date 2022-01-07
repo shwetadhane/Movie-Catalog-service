@@ -1,6 +1,5 @@
 FROM openjdk:11
 EXPOSE 8080
-COPY ./build/libs/Movie-Catalog-service-0.0.1-SNAPSHOT.jar /usr/app/
-WORKDIR /usr/app
+ADD target/springboot-images-new.jar springboot-images-new.jar
 
-ENTRYPOINT ["java","-jar","/Movie-Catalog-service.jar"]
+ENTRYPOINT ["java","-jar","/springboot-images-new.jar"]

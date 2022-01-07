@@ -26,6 +26,8 @@ jobs:
       uses: mr-smithers-excellent/docker-build-push@v4
       with:
         image: pradnyilk/demo-app
+        tags: latest
         registry: docker.io
+        dockerfile: Dockerfile
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
