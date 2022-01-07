@@ -10,6 +10,6 @@ public class MovieCatalogResource {
      @RequestMapping("/")
     public String getCatalog(){
 
-         return "Welcome to Docker....";
+         return "Welcome to Docker, with Latest build";
     }
 }
