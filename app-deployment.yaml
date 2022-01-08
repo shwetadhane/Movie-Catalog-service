@@ -15,6 +15,7 @@ spec:
       containers:
         - name: movie-catalog
           image: pradnyilk/demo-app:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 9091
           env:   # Setting Enviornmental Variables
