@@ -40,3 +40,28 @@ kubectl get pods
 PS C:\Users\Admin> kubectl delete pod hello-app-4
 
 
+**start the minikube instructions** 
+
+minikube start driver--docker
+
+env $(minikube docker-env)
+
+**Do rollout of latest patch of any service running** 
+
+stop the running port forwarding, which was started as **kubectl port-forward deployment/movie-catalog-deployment 9091:9091** 
+
+then issue a command **kubectl rollout restart deployment/movie-catalog-deployment**
+
+Then start the port forwarding by **kubectl port-forward deployment/movie-catalog-deployment 9091:9091**
+
+By this two command you can run latest image of service in Kubernetes.
+
+You can moniter the latest progress of the same by **kubectl get pods** command, you will get to see the pods are getting deleted and recreated.
+
+
+**Please do this carefully while doing cleanup of the Minikube cluster** 
+
+kubectl delete deployments --all                           
+kubectl delete services --all
+kubectl delete pods --all
+kubectl delete daemonset --all
