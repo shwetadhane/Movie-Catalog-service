@@ -59,4 +59,10 @@ public class MovieCatalogResource {
 //        );
 
     }
+
+    @RequestMapping("/")
+    public String doGet(){
+
+        return "Welcome to Movie Catalog WebApp...!";
+    }
 }
