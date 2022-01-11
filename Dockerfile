@@ -1,5 +1,5 @@
 FROM openjdk:11
-EXPOSE 9095
-ADD target/movie-catalog-service.jar movie-catalog-service.jar
+EXPOSE 9091
+ADD target/springboot-images-new.jar springboot-images-new.jar
 
-ENTRYPOINT ["java","-jar","/movie-catalog-service.jar"]
+ENTRYPOINT ["java","-jar","/springboot-images-new.jar"]
