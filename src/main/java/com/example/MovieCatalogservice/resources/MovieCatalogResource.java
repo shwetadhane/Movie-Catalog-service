@@ -2,6 +2,8 @@ package com.example.MovieCatalogservice.resources;
 
 import com.example.MovieCatalogservice.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +17,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/catalog")
+@RefreshScope
 public class MovieCatalogResource {
 
     @Autowired
@@ -23,13 +26,18 @@ public class MovieCatalogResource {
     @Autowired
     private WebClient.Builder webClientBuilder;
 
+    @Value("${microservice.ratings-data-service.endpoints.endpoint.uri}")
+    private String endpoint_RatingsData;
+
+    @Value("${microservice.movie-info-service.endpoints.endpoint.uri}")
+    private String endpoint_MovieInfo;
 
     @RequestMapping("/{userId}")
     public UserCatalogItems getCatalog(@PathVariable("userId") String userId){
 
         UserRatings userRatings = webClientBuilder.build()
                 .get()
-                .uri("http://ratings-data-service/ratingsdata/user/" + userId)
+                .uri(endpoint_RatingsData + userId)
                 .retrieve()
                 .bodyToMono(UserRatings.class)
                 .block();
@@ -40,7 +48,7 @@ public class MovieCatalogResource {
 
                 Movie movie = webClientBuilder.build()
                     .get()
-                    .uri("http://movie-info-service/movies/" + rating.getMovieId())
+                    .uri(endpoint_MovieInfo + rating.getMovieId())
                     .retrieve()
                     .bodyToMono(Movie.class)
                     .block();
