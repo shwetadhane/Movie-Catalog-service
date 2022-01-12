@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: MOVIE-CATALOG-SERVICE
+
+
+server:
+  port: 8087
